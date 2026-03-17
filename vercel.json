@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd grocery-inventory-frontend && npm run build",
+  "outputDirectory": "grocery-inventory-frontend/.next",
+  "installCommand": "cd grocery-inventory-frontend && npm install",
+  "framework": "nextjs"
+}
