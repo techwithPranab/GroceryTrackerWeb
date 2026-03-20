@@ -11,7 +11,7 @@ const AppError = require('../utils/AppError');
 const checkAndAutoAddToShoppingList = async (item) => {
   if (item.quantity <= item.minimumThreshold) {
     const alreadyExists = await ShoppingListItem.findOne({
-      householdId: item.householdId,
+      userId: item.userId,
       inventoryItemId: item._id,
       status: 'pending',
     });
@@ -24,7 +24,7 @@ const checkAndAutoAddToShoppingList = async (item) => {
         unitSize: item.unitSize || null,
         unit: item.unit,
         categoryId: item.categoryId,
-        householdId: item.householdId,
+        userId: item.userId,
         addedBy: item.createdBy,
         autoAdded: true,
         inventoryItemId: item._id,
@@ -35,7 +35,7 @@ const checkAndAutoAddToShoppingList = async (item) => {
   }
 };
 
-const getAllItems = async (householdId, query = {}) => {
+const getAllItems = async (userId, query = {}) => {
   const {
     page = 1,
     limit = 20,
@@ -48,7 +48,7 @@ const getAllItems = async (householdId, query = {}) => {
     sortOrder = 'desc',
   } = query;
 
-  const filter = { householdId };
+  const filter = { userId };
 
   if (categoryId) filter.categoryId = categoryId;
   if (locationId) filter.locationId = locationId;
@@ -81,8 +81,8 @@ const getAllItems = async (householdId, query = {}) => {
   return { items, total, page: parseInt(page, 10), limit: parseInt(limit, 10) };
 };
 
-const getItemById = async (itemId, householdId) => {
-  const item = await InventoryItem.findOne({ _id: itemId, householdId })
+const getItemById = async (itemId, userId) => {
+  const item = await InventoryItem.findOne({ _id: itemId, userId })
     .populate('categoryId', 'name color icon')
     .populate('locationId', 'name')
     .populate('createdBy', 'name avatarInitials');
@@ -91,16 +91,15 @@ const getItemById = async (itemId, householdId) => {
   return item;
 };
 
-const createItem = async (data, userId, householdId) => {
+const createItem = async (data, userId) => {
   const item = await InventoryItem.create({
     ...data,
     createdBy: userId,
-    householdId,
+    userId,
   });
 
   await ActivityLog.create({
     userId,
-    householdId,
     action: 'inventory_added',
     itemId: item._id,
     itemModel: 'InventoryItem',
@@ -117,8 +116,8 @@ const createItem = async (data, userId, householdId) => {
   ]);
 };
 
-const updateItem = async (itemId, data, userId, householdId) => {
-  const item = await InventoryItem.findOne({ _id: itemId, householdId });
+const updateItem = async (itemId, data, userId) => {
+  const item = await InventoryItem.findOne({ _id: itemId, userId });
   if (!item) throw new AppError('Inventory item not found.', 404);
 
   Object.assign(item, data);
@@ -126,7 +125,6 @@ const updateItem = async (itemId, data, userId, householdId) => {
 
   await ActivityLog.create({
     userId,
-    householdId,
     action: 'inventory_updated',
     itemId: item._id,
     itemModel: 'InventoryItem',
@@ -142,13 +140,12 @@ const updateItem = async (itemId, data, userId, householdId) => {
   ]);
 };
 
-const deleteItem = async (itemId, userId, householdId) => {
-  const item = await InventoryItem.findOneAndDelete({ _id: itemId, householdId });
+const deleteItem = async (itemId, userId) => {
+  const item = await InventoryItem.findOneAndDelete({ _id: itemId, userId });
   if (!item) throw new AppError('Inventory item not found.', 404);
 
   await ActivityLog.create({
     userId,
-    householdId,
     action: 'inventory_deleted',
     itemId: item._id,
     itemModel: 'InventoryItem',
@@ -158,8 +155,8 @@ const deleteItem = async (itemId, userId, householdId) => {
   return item;
 };
 
-const updateQuantity = async (itemId, quantity, userId, householdId) => {
-  const item = await InventoryItem.findOne({ _id: itemId, householdId });
+const updateQuantity = async (itemId, quantity, userId) => {
+  const item = await InventoryItem.findOne({ _id: itemId, userId });
   if (!item) throw new AppError('Inventory item not found.', 404);
 
   const previousQty = item.quantity;
@@ -168,7 +165,6 @@ const updateQuantity = async (itemId, quantity, userId, householdId) => {
 
   await ActivityLog.create({
     userId,
-    householdId,
     action: 'quantity_updated',
     itemId: item._id,
     itemModel: 'InventoryItem',
@@ -181,13 +177,13 @@ const updateQuantity = async (itemId, quantity, userId, householdId) => {
   return item;
 };
 
-const getExpiringItems = async (householdId, days = 7) => {
+const getExpiringItems = async (userId, days = 7) => {
   const now = new Date();
   const threshold = new Date();
   threshold.setDate(threshold.getDate() + days);
 
   const items = await InventoryItem.find({
-    householdId,
+    userId,
     expirationDate: { $ne: null, $lte: threshold },
   })
     .populate('categoryId', 'name color')

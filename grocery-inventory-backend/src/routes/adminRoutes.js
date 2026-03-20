@@ -13,7 +13,5 @@ router.get('/stats',               adminController.getStats);
 router.get('/users',               adminController.getUsers);
 router.put('/users/:id',           adminController.updateUser);
 router.delete('/users/:id',        adminController.deleteUser);
-router.get('/households',          adminController.getHouseholds);
-router.delete('/households/:id',   adminController.deleteHousehold);
 
 module.exports = router;

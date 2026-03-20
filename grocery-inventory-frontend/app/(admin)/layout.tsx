@@ -10,7 +10,6 @@ import styles from './admin.module.css';
 const NAV_ITEMS = [
   { href: '/admin/dashboard', label: 'Dashboard',   icon: '📊' },
   { href: '/admin/users',     label: 'Users',        icon: '👥' },
-  { href: '/admin/households',label: 'Households',   icon: '🏠' },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

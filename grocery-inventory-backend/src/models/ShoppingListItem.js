@@ -32,9 +32,9 @@ const shoppingListItemSchema = new mongoose.Schema(
       ref: 'Category',
       default: null,
     },
-    householdId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Household',
+      ref: 'User',
       required: true,
     },
     status: {

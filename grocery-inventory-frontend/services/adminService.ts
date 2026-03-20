@@ -4,7 +4,6 @@ import apiClient from './apiClient';
 
 export interface AdminStats {
   totalUsers: number;
-  totalHouseholds: number;
   totalInventoryItems: number;
   totalShoppingItems: number;
   totalActivityLogs: number;
@@ -25,26 +24,12 @@ export interface AdminUser {
   name: string;
   email: string;
   role: 'admin' | 'member' | 'superadmin';
-  householdId: { _id: string; name: string } | null;
+  inventoryCount?: number;
   createdAt: string;
 }
 
 export interface AdminUsersResponse {
   users: AdminUser[];
-  pagination: { page: number; limit: number; total: number; pages: number };
-}
-
-export interface AdminHousehold {
-  _id: string;
-  name: string;
-  createdBy: { _id: string; name: string; email: string } | null;
-  members: string[];
-  inventoryCount: number;
-  createdAt: string;
-}
-
-export interface AdminHouseholdsResponse {
-  households: AdminHousehold[];
   pagination: { page: number; limit: number; total: number; pages: number };
 }
 
@@ -55,12 +40,6 @@ export interface UsersQuery {
   role?: string;
 }
 
-export interface HouseholdsQuery {
-  page?: number;
-  limit?: number;
-  search?: string;
-}
-
 // ── Service ──────────────────────────────────────────────────────────────────
 
 const adminService = {
@@ -68,13 +47,12 @@ const adminService = {
     const res = await apiClient.get('/admin/stats');
     const payload = res.data.data; // { stats: {...}, recentActivity: [...] }
     return {
-      totalUsers:         payload.stats.totalUsers,
-      totalHouseholds:    payload.stats.totalHouseholds,
-      totalInventoryItems:payload.stats.totalInventory,
-      totalShoppingItems: payload.stats.totalShopping,
-      totalActivityLogs:  payload.stats.totalActivity,
-      newUsersToday:      payload.stats.newUsersToday,
-      recentActivity:     payload.recentActivity,
+      totalUsers:          payload.stats.totalUsers,
+      totalInventoryItems: payload.stats.totalInventory,
+      totalShoppingItems:  payload.stats.totalShopping,
+      totalActivityLogs:   payload.stats.totalActivity,
+      newUsersToday:       payload.stats.newUsersToday,
+      recentActivity:      payload.recentActivity,
     };
   },
 
@@ -93,17 +71,6 @@ const adminService = {
 
   deleteUser: async (id: string): Promise<void> => {
     await apiClient.delete(`/admin/users/${id}`);
-  },
-
-  getHouseholds: async (
-    params: HouseholdsQuery = {}
-  ): Promise<AdminHouseholdsResponse> => {
-    const res = await apiClient.get('/admin/households', { params });
-    return res.data.data;
-  },
-
-  deleteHousehold: async (id: string): Promise<void> => {
-    await apiClient.delete(`/admin/households/${id}`);
   },
 };
 

@@ -5,10 +5,10 @@ const InventoryItem = require('../models/InventoryItem');
 const ActivityLog = require('../models/ActivityLog');
 const AppError = require('../utils/AppError');
 
-const getAllItems = async (householdId, query = {}) => {
+const getAllItems = async (userId, query = {}) => {
   const { status, page = 1, limit = 50, sortBy = 'createdAt', sortOrder = 'desc' } = query;
 
-  const filter = { householdId };
+  const filter = { userId };
   if (status) filter.status = status;
 
   const skip = (parseInt(page, 10) - 1) * parseInt(limit, 10);
@@ -28,16 +28,15 @@ const getAllItems = async (householdId, query = {}) => {
   return { items, total, page: parseInt(page, 10), limit: parseInt(limit, 10) };
 };
 
-const addItem = async (data, userId, householdId) => {
+const addItem = async (data, userId) => {
   const item = await ShoppingListItem.create({
     ...data,
     addedBy: userId,
-    householdId,
+    userId,
   });
 
   await ActivityLog.create({
     userId,
-    householdId,
     action: 'shopping_item_added',
     itemId: item._id,
     itemModel: 'ShoppingListItem',
@@ -50,8 +49,8 @@ const addItem = async (data, userId, householdId) => {
   ]);
 };
 
-const updateItem = async (itemId, data, userId, householdId) => {
-  const item = await ShoppingListItem.findOne({ _id: itemId, householdId });
+const updateItem = async (itemId, data, userId) => {
+  const item = await ShoppingListItem.findOne({ _id: itemId, userId });
   if (!item) throw new AppError('Shopping list item not found.', 404);
 
   const wasPending = item.status === 'pending';
@@ -61,9 +60,9 @@ const updateItem = async (itemId, data, userId, householdId) => {
     item.purchasedBy = userId;
     item.purchasedAt = new Date();
 
-    // Auto-increment inventory quantity for matching item in this household
+    // Auto-increment inventory quantity for matching item for this user
     const inventoryItem = await InventoryItem.findOne({
-      householdId,
+      userId,
       itemName: { $regex: new RegExp(`^${item.itemName.trim()}$`, 'i') },
     });
     if (inventoryItem) {
@@ -73,7 +72,6 @@ const updateItem = async (itemId, data, userId, householdId) => {
 
     await ActivityLog.create({
       userId,
-      householdId,
       action: 'shopping_item_purchased',
       itemId: item._id,
       itemModel: 'ShoppingListItem',
@@ -85,13 +83,12 @@ const updateItem = async (itemId, data, userId, householdId) => {
   return item;
 };
 
-const deleteItem = async (itemId, userId, householdId) => {
-  const item = await ShoppingListItem.findOneAndDelete({ _id: itemId, householdId });
+const deleteItem = async (itemId, userId) => {
+  const item = await ShoppingListItem.findOneAndDelete({ _id: itemId, userId });
   if (!item) throw new AppError('Shopping list item not found.', 404);
 
   await ActivityLog.create({
     userId,
-    householdId,
     action: 'shopping_item_deleted',
     itemId: item._id,
     itemModel: 'ShoppingListItem',
@@ -101,8 +98,8 @@ const deleteItem = async (itemId, userId, householdId) => {
   return item;
 };
 
-const clearPurchased = async (householdId) => {
-  const result = await ShoppingListItem.deleteMany({ householdId, status: 'purchased' });
+const clearPurchased = async (userId) => {
+  const result = await ShoppingListItem.deleteMany({ userId, status: 'purchased' });
   return result;
 };
 

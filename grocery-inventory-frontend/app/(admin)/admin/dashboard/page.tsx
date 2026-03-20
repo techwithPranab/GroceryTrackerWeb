@@ -6,7 +6,6 @@ import styles from './dashboard.module.css';
 
 const STAT_CARDS = [
   { key: 'totalUsers',         label: 'Total Users',        icon: '👥', badge: '' },
-  { key: 'totalHouseholds',    label: 'Households',          icon: '🏠', badge: '' },
   { key: 'totalInventoryItems',label: 'Inventory Items',     icon: '📦', badge: '' },
   { key: 'totalShoppingItems', label: 'Shopping Items',      icon: '🛒', badge: '' },
   { key: 'totalActivityLogs',  label: 'Activity Logs',       icon: '📋', badge: '' },

@@ -3,25 +3,9 @@ export interface User {
   name: string;
   email: string;
   role: 'admin' | 'member' | 'superadmin';
-  householdId: string | null;
   avatarInitials: string;
   lastLoginAt: string | null;
   createdAt: string;
-}
-
-export interface Household {
-  _id: string;
-  name: string;
-  createdBy: User;
-  members: HouseholdMember[];
-  memberCount: number;
-  createdAt: string;
-}
-
-export interface HouseholdMember {
-  userId: User;
-  role: 'admin' | 'member' | 'superadmin';
-  joinedAt: string;
 }
 
 export interface Category {
@@ -29,7 +13,7 @@ export interface Category {
   name: string;
   color: string;
   icon: string;
-  householdId: string;
+  userId: string;
   createdBy: Pick<User, '_id' | 'name'>;
   itemCount?: number;
 }
@@ -38,7 +22,7 @@ export interface Location {
   _id: string;
   name: string;
   description: string;
-  householdId: string;
+  userId: string;
   createdBy: Pick<User, '_id' | 'name'>;
   itemCount?: number;
 }
@@ -56,7 +40,7 @@ export interface InventoryItem {
   minimumThreshold: number;
   expirationDate: string | null;
   locationId: Location | null;
-  householdId: string;
+  userId: string;
   createdBy: Pick<User, '_id' | 'name' | 'avatarInitials'>;
   notes: string;
   brand: string;
@@ -78,7 +62,7 @@ export interface ShoppingListItem {
   unitSize: number | null;
   unit: string;
   categoryId: Category | null;
-  householdId: string;
+  userId: string;
   status: ShoppingItemStatus;
   addedBy: Pick<User, '_id' | 'name' | 'avatarInitials'> | null;
   purchasedBy: Pick<User, '_id' | 'name' | 'avatarInitials'> | null;
@@ -93,7 +77,6 @@ export interface ShoppingListItem {
 export interface ActivityLog {
   _id: string;
   userId: Pick<User, '_id' | 'name' | 'avatarInitials'>;
-  householdId: string;
   action: string;
   itemId: string | null;
   description: string;
@@ -172,13 +155,6 @@ export interface DashboardState {
   stats: DashboardStats | null;
   categoryDistribution: CategoryDistribution[];
   topItems: Array<{ _id: string; itemName: string; quantity: number; unit: string; activityCount: number }>;
-  isLoading: boolean;
-  error: string | null;
-}
-
-export interface HouseholdState {
-  household: Household | null;
-  members: HouseholdMember[];
   isLoading: boolean;
   error: string | null;
 }

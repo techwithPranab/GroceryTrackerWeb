@@ -8,15 +8,15 @@ const { sendSuccess } = require('../utils/apiResponse');
 
 const getAll = async (req, res, next) => {
   try {
-    const householdId = req.user.householdId;
+    const userId = req.user._id;
 
-    const locations = await Location.find({ householdId })
+    const locations = await Location.find({ userId })
       .populate('createdBy', 'name')
       .sort({ name: 1 });
 
     // Attach item counts in a single aggregation query
     const counts = await InventoryItem.aggregate([
-      { $match: { householdId } },
+      { $match: { userId } },
       { $group: { _id: '$locationId', count: { $sum: 1 } } },
     ]);
     const countMap = Object.fromEntries(counts.map(c => [String(c._id), c.count]));
@@ -38,13 +38,12 @@ const create = async (req, res, next) => {
     const location = await Location.create({
       name,
       description,
-      householdId: req.user.householdId,
+      userId: req.user._id,
       createdBy: req.user._id,
     });
 
     await ActivityLog.create({
       userId: req.user._id,
-      householdId: req.user.householdId,
       action: 'location_created',
       itemId: location._id,
       itemModel: 'Location',
@@ -60,7 +59,7 @@ const create = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const location = await Location.findOneAndUpdate(
-      { _id: req.params.id, householdId: req.user.householdId },
+      { _id: req.params.id, userId: req.user._id },
       req.body,
       { new: true, runValidators: true }
     );
@@ -75,7 +74,7 @@ const remove = async (req, res, next) => {
   try {
     const location = await Location.findOneAndDelete({
       _id: req.params.id,
-      householdId: req.user.householdId,
+      userId: req.user._id,
     });
     if (!location) throw new AppError('Location not found.', 404);
     return sendSuccess(res, 200, 'Location deleted.');

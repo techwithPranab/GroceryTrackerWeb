@@ -20,7 +20,6 @@ const shoppingListRoutes = require('./routes/shoppingListRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const locationRoutes = require('./routes/locationRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
-const householdRoutes = require('./routes/householdRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
@@ -79,7 +78,6 @@ app.use('/api/shopping-list', shoppingListRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/locations', locationRoutes);
 app.use('/api/dashboard', dashboardRoutes);
-app.use('/api/household', householdRoutes);
 app.use('/api/admin', adminRoutes);
 
 // ─── 404 Handler ──────────────────────────────────────────────────────────────

@@ -9,11 +9,6 @@ const activityLogSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    householdId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Household',
-      required: true,
-    },
     action: {
       type: String,
       required: true,
@@ -25,13 +20,12 @@ const activityLogSchema = new mongoose.Schema(
         'shopping_item_added',
         'shopping_item_purchased',
         'shopping_item_deleted',
-        'household_created',
-        'member_invited',
-        'member_joined',
         'category_created',
         'location_created',
         'user_login',
         'user_registered',
+        'admin_user_updated',
+        'admin_user_deleted',
       ],
     },
     itemId: {
@@ -40,7 +34,7 @@ const activityLogSchema = new mongoose.Schema(
     },
     itemModel: {
       type: String,
-      enum: ['InventoryItem', 'ShoppingListItem', 'Category', 'Location', 'Household', 'User', null],
+      enum: ['InventoryItem', 'ShoppingListItem', 'Category', 'Location', 'User', null],
       default: null,
     },
     description: {

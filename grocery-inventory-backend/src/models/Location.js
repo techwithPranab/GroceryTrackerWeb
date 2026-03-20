@@ -11,9 +11,9 @@ const locationSchema = new mongoose.Schema(
       minlength: [2, 'Location name must be at least 2 characters'],
       maxlength: [50, 'Location name cannot exceed 50 characters'],
     },
-    householdId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Household',
+      ref: 'User',
       required: true,
     },
     description: {
@@ -33,6 +33,6 @@ const locationSchema = new mongoose.Schema(
   }
 );
 
-locationSchema.index({ name: 1, householdId: 1 }, { unique: true });
+locationSchema.index({ name: 1, userId: 1 }, { unique: true });
 
 module.exports = mongoose.model('Location', locationSchema);

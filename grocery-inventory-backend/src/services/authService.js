@@ -2,7 +2,6 @@
 
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const Household = require('../models/Household');
 const ActivityLog = require('../models/ActivityLog');
 const AppError = require('../utils/AppError');
 const { jwtSecret, jwtExpiresIn } = require('../config/env');
@@ -21,7 +20,6 @@ const register = async ({ name, email, password }) => {
 
   await ActivityLog.create({
     userId: user._id,
-    householdId: user.householdId || user._id, // temp before household creation
     action: 'user_registered',
     description: `${user.name} registered an account.`,
   });
@@ -44,21 +42,18 @@ const login = async ({ email, password }) => {
   user.lastLoginAt = new Date();
   await user.save({ validateBeforeSave: false });
 
-  if (user.householdId) {
-    await ActivityLog.create({
-      userId: user._id,
-      householdId: user.householdId,
-      action: 'user_login',
-      description: `${user.name} logged in.`,
-    });
-  }
+  await ActivityLog.create({
+    userId: user._id,
+    action: 'user_login',
+    description: `${user.name} logged in.`,
+  });
 
   const token = generateToken(user._id);
   return { user, token };
 };
 
 const getProfile = async (userId) => {
-  const user = await User.findById(userId).populate('householdId', 'name');
+  const user = await User.findById(userId);
   if (!user) throw new AppError('User not found.', 404);
   return user;
 };

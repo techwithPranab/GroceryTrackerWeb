@@ -24,7 +24,6 @@ const mainNav: NavItem[] = [
 const managementNav: NavItem[] = [
   { label: 'Categories', href: '/categories', icon: '🏷️' },
   { label: 'Locations', href: '/locations', icon: '📍' },
-  { label: 'Household', href: '/household', icon: '🏠' },
   { label: 'Activity Log', href: '/activity', icon: '📋' },
 ];
 

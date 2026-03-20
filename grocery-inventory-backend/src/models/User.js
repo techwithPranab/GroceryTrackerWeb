@@ -27,11 +27,6 @@ const userSchema = new mongoose.Schema(
       minlength: [8, 'Password must be at least 8 characters'],
       select: false,
     },
-    householdId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Household',
-      default: null,
-    },
     role: {
       type: String,
       enum: ['admin', 'member', 'superadmin'],

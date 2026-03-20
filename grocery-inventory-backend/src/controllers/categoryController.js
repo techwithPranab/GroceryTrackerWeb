@@ -8,15 +8,15 @@ const { sendSuccess } = require('../utils/apiResponse');
 
 const getAll = async (req, res, next) => {
   try {
-    const householdId = req.user.householdId;
+    const userId = req.user._id;
 
-    const categories = await Category.find({ householdId })
+    const categories = await Category.find({ userId })
       .populate('createdBy', 'name')
       .sort({ name: 1 });
 
     // Attach item counts in a single aggregation query
     const counts = await InventoryItem.aggregate([
-      { $match: { householdId } },
+      { $match: { userId } },
       { $group: { _id: '$categoryId', count: { $sum: 1 } } },
     ]);
     const countMap = Object.fromEntries(counts.map(c => [String(c._id), c.count]));
@@ -39,13 +39,12 @@ const create = async (req, res, next) => {
       name,
       color,
       icon,
-      householdId: req.user.householdId,
+      userId: req.user._id,
       createdBy: req.user._id,
     });
 
     await ActivityLog.create({
       userId: req.user._id,
-      householdId: req.user.householdId,
       action: 'category_created',
       itemId: category._id,
       itemModel: 'Category',
@@ -61,7 +60,7 @@ const create = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const category = await Category.findOneAndUpdate(
-      { _id: req.params.id, householdId: req.user.householdId },
+      { _id: req.params.id, userId: req.user._id },
       req.body,
       { new: true, runValidators: true }
     );
@@ -76,7 +75,7 @@ const remove = async (req, res, next) => {
   try {
     const category = await Category.findOneAndDelete({
       _id: req.params.id,
-      householdId: req.user.householdId,
+      userId: req.user._id,
     });
     if (!category) throw new AppError('Category not found.', 404);
     return sendSuccess(res, 200, 'Category deleted.');

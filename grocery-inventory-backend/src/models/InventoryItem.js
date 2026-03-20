@@ -49,9 +49,9 @@ const inventoryItemSchema = new mongoose.Schema(
       ref: 'Location',
       default: null,
     },
-    householdId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Household',
+      ref: 'User',
       required: true,
     },
     createdBy: {

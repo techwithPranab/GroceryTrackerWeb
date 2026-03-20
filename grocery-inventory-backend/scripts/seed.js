@@ -5,7 +5,6 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 const User = require('../src/models/User');
-const Household = require('../src/models/Household');
 const Category = require('../src/models/Category');
 const Location = require('../src/models/Location');
 const InventoryItem = require('../src/models/InventoryItem');
@@ -20,7 +19,6 @@ const seed = async () => {
   // Clear existing data
   await Promise.all([
     User.deleteMany({}),
-    Household.deleteMany({}),
     Category.deleteMany({}),
     Location.deleteMany({}),
     InventoryItem.deleteMany({}),
@@ -51,24 +49,6 @@ const seed = async () => {
   });
 
   console.log('👤 Created users');
-
-  // ── Household ──────────────────────────────────────────────────────────────
-  const household = await Household.create({
-    name: 'Johnson Family',
-    createdBy: admin._id,
-    members: [
-      { userId: admin._id,  role: 'admin',  joinedAt: new Date() },
-      { userId: member._id, role: 'member', joinedAt: new Date() },
-    ],
-  });
-
-  await User.updateMany(
-    { _id: { $in: [admin._id, member._id] } },
-    { householdId: household._id }
-  );
-  await User.findByIdAndUpdate(admin._id, { role: 'admin' });
-
-  console.log('🏠 Created household');
 
   // ── Categories ─────────────────────────────────────────────────────────────
   // Sourced from BigBasket & Blinkit top-level + sub-categories (merged & deduplicated)
@@ -173,7 +153,7 @@ const seed = async () => {
   ];
 
   const categories = await Category.insertMany(
-    categoryData.map((c) => ({ ...c, householdId: household._id, createdBy: admin._id }))
+    categoryData.map((c) => ({ ...c, userId: admin._id, createdBy: admin._id }))
   );
   console.log('📂 Created categories');
 
@@ -188,7 +168,7 @@ const seed = async () => {
   ];
 
   const locations = await Location.insertMany(
-    locationData.map((l) => ({ ...l, householdId: household._id, createdBy: admin._id }))
+    locationData.map((l) => ({ ...l, userId: admin._id, createdBy: admin._id }))
   );
   console.log('📍 Created locations');
 
@@ -581,7 +561,7 @@ const seed = async () => {
     {
       itemName: 'Toilet Paper',
       categoryId: getCat('Paper Products & Tissues'),
-      quantity: 4, unit: 'rolls', minimumThreshold: 4,
+      quantity: 4, unit: 'packs', minimumThreshold: 4,
       expirationDate: null, locationId: getLoc('Garage Storage'),
     },
 
@@ -619,7 +599,7 @@ const seed = async () => {
   await InventoryItem.insertMany(
     inventoryData.map((item) => ({
       ...item,
-      householdId: household._id,
+      userId: admin._id,
       createdBy: admin._id,
     }))
   );
@@ -650,7 +630,7 @@ const seed = async () => {
   await ShoppingListItem.insertMany(
     shoppingData.map((item) => ({
       ...item,
-      householdId: household._id,
+      userId: admin._id,
       addedBy: admin._id,
       status: 'pending',
     }))

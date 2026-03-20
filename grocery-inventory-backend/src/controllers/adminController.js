@@ -1,7 +1,6 @@
 'use strict';
 
 const User = require('../models/User');
-const Household = require('../models/Household');
 const InventoryItem = require('../models/InventoryItem');
 const ShoppingListItem = require('../models/ShoppingListItem');
 const ActivityLog = require('../models/ActivityLog');
@@ -13,14 +12,12 @@ const getStats = async (req, res, next) => {
   try {
     const [
       totalUsers,
-      totalHouseholds,
       totalInventory,
       totalShopping,
       totalActivity,
       newUsersToday,
     ] = await Promise.all([
       User.countDocuments(),
-      Household.countDocuments(),
       InventoryItem.countDocuments(),
       ShoppingListItem.countDocuments(),
       ActivityLog.countDocuments(),
@@ -37,7 +34,6 @@ const getStats = async (req, res, next) => {
     return sendSuccess(res, 200, 'Admin stats fetched.', {
       stats: {
         totalUsers,
-        totalHouseholds,
         totalInventory,
         totalShopping,
         totalActivity,
@@ -65,7 +61,6 @@ const getUsers = async (req, res, next) => {
     const [users, total] = await Promise.all([
       User.find(filter)
         .select('-password')
-        .populate('householdId', 'name')
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(parseInt(limit))
@@ -73,8 +68,19 @@ const getUsers = async (req, res, next) => {
       User.countDocuments(filter),
     ]);
 
+    // Attach inventory count per user
+    const inventoryCounts = await InventoryItem.aggregate([
+      { $group: { _id: '$userId', count: { $sum: 1 } } },
+    ]);
+    const invMap = Object.fromEntries(inventoryCounts.map(c => [String(c._id), c.count]));
+
+    const enriched = users.map(u => ({
+      ...u,
+      inventoryCount: invMap[String(u._id)] ?? 0,
+    }));
+
     return sendSuccess(res, 200, 'Users fetched.', {
-      users,
+      users: enriched,
       pagination: {
         page: parseInt(page),
         limit: parseInt(limit),
@@ -99,7 +105,6 @@ const updateUser = async (req, res, next) => {
 
     await ActivityLog.create({
       userId: req.user._id,
-      householdId: req.user.householdId,
       action: 'admin_user_updated',
       itemId: user._id,
       itemModel: 'User',
@@ -122,7 +127,6 @@ const deleteUser = async (req, res, next) => {
 
     await ActivityLog.create({
       userId: req.user._id,
-      householdId: req.user.householdId,
       action: 'admin_user_deleted',
       description: `Admin deleted user "${user.email}".`,
     });
@@ -133,64 +137,4 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-// ── Households ────────────────────────────────────────────────────────────────
-const getHouseholds = async (req, res, next) => {
-  try {
-    const { page = 1, limit = 20, search } = req.query;
-    const filter = search ? { name: { $regex: search, $options: 'i' } } : {};
-
-    const skip = (parseInt(page) - 1) * parseInt(limit);
-    const [households, total] = await Promise.all([
-      Household.find(filter)
-        .populate('createdBy', 'name email')
-        .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(parseInt(limit))
-        .lean(),
-      Household.countDocuments(filter),
-    ]);
-
-    // Attach inventory count per household
-    const inventoryCounts = await InventoryItem.aggregate([
-      { $group: { _id: '$householdId', count: { $sum: 1 } } },
-    ]);
-    const invMap = Object.fromEntries(inventoryCounts.map(c => [String(c._id), c.count]));
-
-    const enriched = households.map(h => ({
-      ...h,
-      inventoryCount: invMap[String(h._id)] ?? 0,
-    }));
-
-    return sendSuccess(res, 200, 'Households fetched.', {
-      households: enriched,
-      pagination: {
-        page: parseInt(page),
-        limit: parseInt(limit),
-        total,
-        pages: Math.ceil(total / parseInt(limit)),
-      },
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const deleteHousehold = async (req, res, next) => {
-  try {
-    const household = await Household.findByIdAndDelete(req.params.id);
-    if (!household) throw new AppError('Household not found.', 404);
-
-    await ActivityLog.create({
-      userId: req.user._id,
-      householdId: req.user.householdId,
-      action: 'admin_household_deleted',
-      description: `Admin deleted household "${household.name}".`,
-    });
-
-    return sendSuccess(res, 200, 'Household deleted.');
-  } catch (error) {
-    next(error);
-  }
-};
-
-module.exports = { getStats, getUsers, updateUser, deleteUser, getHouseholds, deleteHousehold };
+module.exports = { getStats, getUsers, updateUser, deleteUser };

@@ -11,9 +11,9 @@ const categorySchema = new mongoose.Schema(
       minlength: [2, 'Category name must be at least 2 characters'],
       maxlength: [50, 'Category name cannot exceed 50 characters'],
     },
-    householdId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Household',
+      ref: 'User',
       required: true,
     },
     color: {
@@ -36,7 +36,7 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
-// Compound unique index: same category name not allowed per household
-categorySchema.index({ name: 1, householdId: 1 }, { unique: true });
+// Compound unique index: same category name not allowed per user
+categorySchema.index({ name: 1, userId: 1 }, { unique: true });
 
 module.exports = mongoose.model('Category', categorySchema);

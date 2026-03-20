@@ -5,7 +5,7 @@ const ShoppingListItem = require('../models/ShoppingListItem');
 const ActivityLog = require('../models/ActivityLog');
 const Category = require('../models/Category');
 
-const getStats = async (householdId) => {
+const getStats = async (userId) => {
   const now = new Date();
   const threeDays = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
   const sevenDays = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -20,26 +20,26 @@ const getStats = async (householdId) => {
     purchasedShoppingItems,
     recentActivity,
   ] = await Promise.all([
-    InventoryItem.countDocuments({ householdId }),
+    InventoryItem.countDocuments({ userId }),
     InventoryItem.countDocuments({
-      householdId,
+      userId,
       $expr: { $lte: ['$quantity', '$minimumThreshold'] },
     }),
     InventoryItem.countDocuments({
-      householdId,
+      userId,
       expirationDate: { $ne: null, $lt: now },
     }),
     InventoryItem.countDocuments({
-      householdId,
+      userId,
       expirationDate: { $ne: null, $gte: now, $lte: threeDays },
     }),
     InventoryItem.countDocuments({
-      householdId,
+      userId,
       expirationDate: { $ne: null, $gte: now, $lte: sevenDays },
     }),
-    ShoppingListItem.countDocuments({ householdId, status: 'pending' }),
-    ShoppingListItem.countDocuments({ householdId, status: 'purchased' }),
-    ActivityLog.find({ householdId })
+    ShoppingListItem.countDocuments({ userId, status: 'pending' }),
+    ShoppingListItem.countDocuments({ userId, status: 'purchased' }),
+    ActivityLog.find({ userId })
       .populate('userId', 'name avatarInitials')
       .sort({ createdAt: -1 })
       .limit(10),
@@ -62,9 +62,9 @@ const getStats = async (householdId) => {
   };
 };
 
-const getCategoryDistribution = async (householdId) => {
+const getCategoryDistribution = async (userId) => {
   const distribution = await InventoryItem.aggregate([
-    { $match: { householdId: require('mongoose').Types.ObjectId.createFromHexString(householdId.toString()) } },
+    { $match: { userId: require('mongoose').Types.ObjectId.createFromHexString(userId.toString()) } },
     {
       $group: {
         _id: '$categoryId',
@@ -94,11 +94,11 @@ const getCategoryDistribution = async (householdId) => {
   return distribution;
 };
 
-const getTopItems = async (householdId, limit = 10) => {
+const getTopItems = async (userId, limit = 10) => {
   const items = await ActivityLog.aggregate([
     {
       $match: {
-        householdId: require('mongoose').Types.ObjectId.createFromHexString(householdId.toString()),
+        userId: require('mongoose').Types.ObjectId.createFromHexString(userId.toString()),
         action: { $in: ['quantity_updated', 'shopping_item_purchased'] },
         itemId: { $ne: null },
       },

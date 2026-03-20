@@ -1,45 +1,5 @@
 import apiClient from './apiClient';
-import type { ApiResponse, Household, HouseholdMember, Category, Location } from '@/types';
-
-const householdService = {
-  create: async (name: string) => {
-    const res = await apiClient.post<ApiResponse<{ household: Household }>>(
-      '/household',
-      { name }
-    );
-    return res.data;
-  },
-
-  get: async () => {
-    const res = await apiClient.get<ApiResponse<{ household: Household }>>('/household');
-    return res.data;
-  },
-
-  getMembers: async () => {
-    const res = await apiClient.get<ApiResponse<{ members: HouseholdMember[] }>>(
-      '/household/members'
-    );
-    return res.data;
-  },
-
-  invite: async (email: string) => {
-    const res = await apiClient.post<ApiResponse<unknown>>('/household/invite', { email });
-    return res.data;
-  },
-
-  updateMemberRole: async (memberId: string, role: 'admin' | 'member') => {
-    const res = await apiClient.patch<ApiResponse<{ household: Household }>>(
-      `/household/members/${memberId}/role`,
-      { role }
-    );
-    return res.data;
-  },
-
-  getActivity: async (page = 1, limit = 20) => {
-    const res = await apiClient.get('/household/activity', { params: { page, limit } });
-    return res.data;
-  },
-};
+import type { ApiResponse, Category, Location } from '@/types';
 
 export const categoryService = {
   getAll: async () => {
@@ -78,5 +38,3 @@ export const locationService = {
     return res.data;
   },
 };
-
-export default householdService;

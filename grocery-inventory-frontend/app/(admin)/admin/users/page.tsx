@@ -216,7 +216,7 @@ export default function AdminUsersPage() {
                 <th className={styles.th}>#</th>
                 <th className={styles.th}>User</th>
                 <th className={styles.th}>Role</th>
-                <th className={styles.th}>Household</th>
+                <th className={styles.th}>Inventory</th>
                 <th className={styles.th}>Joined</th>
                 <th className={styles.th}>Actions</th>
               </tr>
@@ -247,7 +247,7 @@ export default function AdminUsersPage() {
                       <span className={`${styles.roleBadge} ${roleCls(u.role)}`}>{u.role}</span>
                     </td>
                     <td className={styles.td}>
-                      {u.householdId ? u.householdId.name : <span style={{ color: '#94a3b8' }}>—</span>}
+                      {u.inventoryCount ?? 0}
                     </td>
                     <td className={styles.td} style={{ whiteSpace: 'nowrap' }}>{fmtDate(u.createdAt)}</td>
                     <td className={styles.td}>
