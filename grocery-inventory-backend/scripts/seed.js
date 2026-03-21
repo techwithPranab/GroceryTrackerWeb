@@ -153,7 +153,7 @@ const seed = async () => {
   ];
 
   const categories = await Category.insertMany(
-    categoryData.map((c) => ({ ...c, userId: admin._id, createdBy: admin._id }))
+    categoryData.map((c) => ({ ...c, createdBy: admin._id }))
   );
   console.log('📂 Created categories');
 

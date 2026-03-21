@@ -1,5 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 import { categoryService } from '@/services/householdService';
 import { Category } from '@/types';
 import { Modal, Button, Input, EmptyState, LoadingSpinner } from '@/components/ui';
@@ -14,6 +16,9 @@ const COLOR_PRESETS = [
 const PAGE_SIZE_OPTIONS = [5, 10, 20];
 
 export default function CategoriesPage() {
+  const currentUser = useSelector((state: RootState) => state.auth.user);
+  const isAdmin = currentUser?.role === 'admin' || currentUser?.role === 'superadmin';
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading,    setLoading]    = useState(true);
   const [search,     setSearch]     = useState('');
@@ -109,7 +114,7 @@ export default function CategoriesPage() {
           <span className={styles.totalLabel}>
             {filtered.length} categor{filtered.length === 1 ? 'y' : 'ies'}
           </span>
-          <Button onClick={openAdd}>＋ New Category</Button>
+          {isAdmin && <Button onClick={openAdd}>＋ New Category</Button>}
         </div>
       </div>
 
@@ -121,7 +126,7 @@ export default function CategoriesPage() {
           icon="🏷️"
           title="No categories yet"
           message="Create categories to organise your inventory."
-          action={<Button onClick={openAdd}>Create Category</Button>}
+          action={isAdmin ? <Button onClick={openAdd}>Create Category</Button> : undefined}
         />
       ) : filtered.length === 0 ? (
         <EmptyState icon="🔍" title="No results" message={`No categories match "${search}".`} />
@@ -137,7 +142,7 @@ export default function CategoriesPage() {
                   <th className={styles.th}>Color</th>
                   <th className={styles.th} style={{ textAlign: 'right' }}>Items</th>
                   <th className={styles.th}>Created By</th>
-                  <th className={styles.th} style={{ width: 120 }}>Actions</th>
+                  {isAdmin && <th className={styles.th} style={{ width: 120 }}>Actions</th>}
                 </tr>
               </thead>
               <tbody>
@@ -166,6 +171,7 @@ export default function CategoriesPage() {
                     <td className={styles.td} style={{ color: 'var(--color-text-secondary)', fontSize: 13 }}>
                       {cat.createdBy?.name ?? '—'}
                     </td>
+                    {isAdmin && (
                     <td className={styles.td}>
                       <div className={styles.actions}>
                         <button className={styles.actionBtn} onClick={() => openEdit(cat)} title="Edit">
@@ -176,6 +182,7 @@ export default function CategoriesPage() {
                         </button>
                       </div>
                     </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
@@ -247,7 +254,8 @@ export default function CategoriesPage() {
         </>
       )}
 
-      {/* ── Add / Edit modal ── */}
+      {/* ── Add / Edit modal (admin only) ── */}
+      {isAdmin && (
       <Modal
         open={showModal}
         onClose={() => setShowModal(false)}
@@ -299,8 +307,10 @@ export default function CategoriesPage() {
           </div>
         </div>
       </Modal>
+      )}
 
-      {/* ── Delete confirm modal ── */}
+      {/* ── Delete confirm modal (admin only) ── */}
+      {isAdmin && (
       <Modal
         open={!!delTarget}
         onClose={() => setDelTarget(null)}
@@ -320,6 +330,7 @@ export default function CategoriesPage() {
             : "This won't affect any inventory items."}
         </p>
       </Modal>
+      )}
     </div>
   );
 }

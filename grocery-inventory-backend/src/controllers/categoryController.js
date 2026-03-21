@@ -8,13 +8,12 @@ const { sendSuccess } = require('../utils/apiResponse');
 
 const getAll = async (req, res, next) => {
   try {
-    const userId = req.user._id;
-
-    const categories = await Category.find({ userId })
+    const categories = await Category.find()
       .populate('createdBy', 'name')
       .sort({ name: 1 });
 
-    // Attach item counts in a single aggregation query
+    // Attach per-user item counts
+    const userId = req.user._id;
     const counts = await InventoryItem.aggregate([
       { $match: { userId } },
       { $group: { _id: '$categoryId', count: { $sum: 1 } } },
@@ -39,7 +38,6 @@ const create = async (req, res, next) => {
       name,
       color,
       icon,
-      userId: req.user._id,
       createdBy: req.user._id,
     });
 
@@ -59,8 +57,8 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const category = await Category.findOneAndUpdate(
-      { _id: req.params.id, userId: req.user._id },
+    const category = await Category.findByIdAndUpdate(
+      req.params.id,
       req.body,
       { new: true, runValidators: true }
     );
@@ -73,10 +71,7 @@ const update = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
   try {
-    const category = await Category.findOneAndDelete({
-      _id: req.params.id,
-      userId: req.user._id,
-    });
+    const category = await Category.findByIdAndDelete(req.params.id);
     if (!category) throw new AppError('Category not found.', 404);
     return sendSuccess(res, 200, 'Category deleted.');
   } catch (error) {

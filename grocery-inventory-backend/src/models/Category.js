@@ -8,13 +8,9 @@ const categorySchema = new mongoose.Schema(
       type: String,
       required: [true, 'Category name is required'],
       trim: true,
+      unique: true,
       minlength: [2, 'Category name must be at least 2 characters'],
       maxlength: [50, 'Category name cannot exceed 50 characters'],
-    },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
     },
     color: {
       type: String,
@@ -36,7 +32,7 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
-// Compound unique index: same category name not allowed per user
-categorySchema.index({ name: 1, userId: 1 }, { unique: true });
+// Global unique index on name (categories are shared across all users)
+categorySchema.index({ name: 1 }, { unique: true });
 
 module.exports = mongoose.model('Category', categorySchema);
