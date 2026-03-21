@@ -132,4 +132,17 @@ const getTopItems = async (userId, limit = 10) => {
   return items;
 };
 
-module.exports = { getStats, getCategoryDistribution, getTopItems };
+const getActivity = async (userId, page = 1, limit = 30) => {
+  const skip = (page - 1) * limit;
+  const [logs, total] = await Promise.all([
+    ActivityLog.find({ userId })
+      .populate('userId', 'name avatarInitials')
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit),
+    ActivityLog.countDocuments({ userId }),
+  ]);
+  return { logs, total, page, limit };
+};
+
+module.exports = { getStats, getCategoryDistribution, getTopItems, getActivity };

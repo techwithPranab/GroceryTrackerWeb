@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import householdService from '@/services/householdService';
+import apiClient from '@/services/apiClient';
 import { ActivityLog } from '@/types';
 import { Card, EmptyState, LoadingSpinner } from '@/components/ui';
 import { formatRelativeTime } from '@/utils/formatters';
@@ -20,7 +20,7 @@ export default function ActivityPage() {
 
   const load = (p: number) => {
     setLoading(true);
-    householdService.getActivity(p, 30)
+    apiClient.get('/dashboard/activity', { params: { page: p, limit: 30 } })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((r: any) => {
         const incoming: ActivityLog[] = r.data?.logs ?? r.data ?? [];

@@ -10,5 +10,6 @@ router.use(authenticate);
 router.get('/stats', dashboardController.getStats);
 router.get('/category-distribution', dashboardController.getCategoryDistribution);
 router.get('/top-items', dashboardController.getTopItems);
+router.get('/activity', dashboardController.getActivity);
 
 module.exports = router;

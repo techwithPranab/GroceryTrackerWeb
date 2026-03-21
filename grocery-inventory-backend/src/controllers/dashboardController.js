@@ -31,4 +31,15 @@ const getTopItems = async (req, res, next) => {
   }
 };
 
-module.exports = { getStats, getCategoryDistribution, getTopItems };
+const getActivity = async (req, res, next) => {
+  try {
+    const page  = parseInt(req.query.page,  10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 30;
+    const data = await dashboardService.getActivity(req.user._id, page, limit);
+    return sendSuccess(res, 200, 'Activity fetched.', data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getStats, getCategoryDistribution, getTopItems, getActivity };
