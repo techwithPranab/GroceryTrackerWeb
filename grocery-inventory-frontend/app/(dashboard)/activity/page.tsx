@@ -23,7 +23,7 @@ export default function ActivityPage() {
     apiClient.get('/dashboard/activity', { params: { page: p, limit: 30 } })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((r: any) => {
-        const incoming: ActivityLog[] = r.data?.logs ?? r.data ?? [];
+        const incoming: ActivityLog[] = r.data?.data?.logs ?? r.data?.logs ?? [];
         if (p === 1) { setLogs(incoming); } else { setLogs(prev => [...prev, ...incoming]); }
         setHasMore(incoming.length === 30);
       })
