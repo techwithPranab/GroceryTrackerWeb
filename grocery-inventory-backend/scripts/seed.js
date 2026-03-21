@@ -168,7 +168,7 @@ const seed = async () => {
   ];
 
   const locations = await Location.insertMany(
-    locationData.map((l) => ({ ...l, userId: admin._id, createdBy: admin._id }))
+    locationData.map((l) => ({ ...l, createdBy: admin._id }))
   );
   console.log('📍 Created locations');
 

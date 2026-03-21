@@ -1,5 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 import { locationService } from '@/services/householdService';
 import { Location } from '@/types';
 import { Modal, Button, Input, Textarea, EmptyState, LoadingSpinner } from '@/components/ui';
@@ -24,6 +26,9 @@ const getIcon = (name: string): string => {
 };
 
 export default function LocationsPage() {
+  const currentUser = useSelector((state: RootState) => state.auth.user);
+  const isAdmin = currentUser?.role === 'admin' || currentUser?.role === 'superadmin';
+
   const [locations, setLocations] = useState<Location[]>([]);
   const [loading,   setLoading]   = useState(true);
   const [search,    setSearch]    = useState('');
@@ -116,7 +121,7 @@ export default function LocationsPage() {
           <span className={styles.totalLabel}>
             {filtered.length} location{filtered.length === 1 ? '' : 's'}
           </span>
-          <Button onClick={openAdd}>＋ New Location</Button>
+          {isAdmin && <Button onClick={openAdd}>＋ New Location</Button>}
         </div>
       </div>
 
@@ -128,7 +133,7 @@ export default function LocationsPage() {
           icon="📍"
           title="No locations yet"
           message="Create storage locations like Fridge, Pantry, Freezer."
-          action={<Button onClick={openAdd}>Create Location</Button>}
+          action={isAdmin ? <Button onClick={openAdd}>Create Location</Button> : undefined}
         />
       ) : filtered.length === 0 ? (
         <EmptyState icon="🔍" title="No results" message={`No locations match "${search}".`} />
@@ -144,7 +149,7 @@ export default function LocationsPage() {
                   <th className={styles.th}>Description</th>
                   <th className={styles.th} style={{ textAlign: 'right' }}>Items</th>
                   <th className={styles.th}>Created By</th>
-                  <th className={styles.th} style={{ width: 120 }}>Actions</th>
+                  {isAdmin && <th className={styles.th} style={{ width: 120 }}>Actions</th>}
                 </tr>
               </thead>
               <tbody>
@@ -168,12 +173,14 @@ export default function LocationsPage() {
                     <td className={styles.td} style={{ color: 'var(--color-text-secondary)', fontSize: 13 }}>
                       {loc.createdBy?.name ?? '—'}
                     </td>
+                    {isAdmin && (
                     <td className={styles.td}>
                       <div className={styles.actions}>
                         <button className={styles.actionBtn} onClick={() => openEdit(loc)} title="Edit">✏️</button>
                         <button className={`${styles.actionBtn} ${styles.dangerBtn}`} onClick={() => setDelTarget(loc)} title="Delete">🗑️</button>
                       </div>
                     </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
@@ -216,7 +223,8 @@ export default function LocationsPage() {
         </>
       )}
 
-      {/* ── Add / Edit modal ── */}
+      {/* ── Add / Edit modal (admin only) ── */}
+      {isAdmin && (
       <Modal
         open={showModal}
         onClose={() => setShowModal(false)}
@@ -234,8 +242,10 @@ export default function LocationsPage() {
           <Textarea label="Description (optional)" value={desc} onChange={e => setDesc(e.target.value)} placeholder="e.g. Top shelf of the kitchen fridge" />
         </div>
       </Modal>
+      )}
 
-      {/* ── Delete confirm ── */}
+      {/* ── Delete confirm (admin only) ── */}
+      {isAdmin && (
       <Modal
         open={!!delTarget}
         onClose={() => setDelTarget(null)}
@@ -255,6 +265,7 @@ export default function LocationsPage() {
             : "Inventory items stored here won't be affected."}
         </p>
       </Modal>
+      )}
     </div>
   );
 }
