@@ -58,4 +58,13 @@ const clearPurchased = async (req, res, next) => {
   }
 };
 
-module.exports = { getAll, addItem, updateItem, deleteItem, clearPurchased };
+const getPurchaseHistory = async (req, res, next) => {
+  try {
+    const data = await shoppingListService.getPurchaseHistory(req.user._id, req.query);
+    return sendSuccess(res, 200, 'Purchase history fetched.', data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAll, addItem, updateItem, deleteItem, clearPurchased, getPurchaseHistory };

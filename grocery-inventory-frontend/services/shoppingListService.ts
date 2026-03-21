@@ -62,6 +62,16 @@ const shoppingListService = {
     );
     return res.data;
   },
+
+  getPurchaseHistory: async (params?: { page?: number; limit?: number; search?: string }) => {
+    const res = await apiClient.get<ApiResponse<{
+      groups: Array<{ date: string; items: ShoppingListItem[] }>;
+      totalDates: number;
+      page: number;
+      limit: number;
+    }>>('/shopping-list/history', { params });
+    return res.data;
+  },
 };
 
 export default shoppingListService;

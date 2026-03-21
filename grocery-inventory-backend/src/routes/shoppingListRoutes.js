@@ -10,6 +10,7 @@ const { shoppingItemValidator, updateShoppingItemValidator } = require('../valid
 router.use(authenticate);
 
 router.get('/', shoppingListController.getAll);
+router.get('/history', shoppingListController.getPurchaseHistory);
 router.post('/', shoppingItemValidator, validate, shoppingListController.addItem);
 router.delete('/clear-purchased', shoppingListController.clearPurchased);
 router.put('/:id', updateShoppingItemValidator, validate, shoppingListController.updateItem);

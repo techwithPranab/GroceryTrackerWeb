@@ -15,10 +15,11 @@ interface NavItem {
 }
 
 const mainNav: NavItem[] = [
-  { label: 'Dashboard', href: '/dashboard', icon: '📊' },
-  { label: 'Inventory', href: '/inventory', icon: '📦' },
-  { label: 'Shopping List', href: '/shopping-list', icon: '🛒' },
-  { label: 'Expiry Tracker', href: '/expiry-tracker', icon: '⏰' },
+  { label: 'Dashboard',         href: '/dashboard',         icon: '📊' },
+  { label: 'Inventory',         href: '/inventory',         icon: '📦' },
+  { label: 'Shopping List',     href: '/shopping-list',     icon: '🛒' },
+  { label: 'Purchase History',  href: '/purchase-history',  icon: '🧾' },
+  { label: 'Expiry Tracker',    href: '/expiry-tracker',    icon: '⏰' },
 ];
 
 const managementNav: NavItem[] = [

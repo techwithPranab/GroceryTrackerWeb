@@ -103,4 +103,71 @@ const clearPurchased = async (userId) => {
   return result;
 };
 
-module.exports = { getAllItems, addItem, updateItem, deleteItem, clearPurchased };
+/**
+ * Return purchased items grouped by calendar date (purchasedAt), paginated.
+ * Each group: { date: 'YYYY-MM-DD', items: [...] }
+ */
+const getPurchaseHistory = async (userId, query = {}) => {
+  const { page = 1, limit = 10, search = '' } = query;
+  const pageNum  = parseInt(page,  10);
+  const limitNum = parseInt(limit, 10);
+
+  const filter = { userId, status: 'purchased', purchasedAt: { $ne: null } };
+  if (search) filter.itemName = { $regex: search, $options: 'i' };
+
+  // Get unique purchase dates (truncated to day) descending
+  const datePipeline = [
+    { $match: filter },
+    {
+      $group: {
+        _id: {
+          $dateToString: { format: '%Y-%m-%d', date: '$purchasedAt' },
+        },
+      },
+    },
+    { $sort: { _id: -1 } },
+    { $count: 'total' },
+  ];
+  const [{ total: totalDates = 0 } = {}] = await ShoppingListItem.aggregate(datePipeline);
+
+  const datesPipeline = [
+    { $match: filter },
+    {
+      $group: {
+        _id: { $dateToString: { format: '%Y-%m-%d', date: '$purchasedAt' } },
+      },
+    },
+    { $sort: { _id: -1 } },
+    { $skip: (pageNum - 1) * limitNum },
+    { $limit: limitNum },
+  ];
+  const dates = (await ShoppingListItem.aggregate(datesPipeline)).map((d) => d._id);
+
+  // Fetch all purchased items whose date falls in the paged date list
+  const items = await ShoppingListItem.find({
+    ...filter,
+    $expr: {
+      $in: [
+        { $dateToString: { format: '%Y-%m-%d', date: '$purchasedAt' } },
+        dates,
+      ],
+    },
+  })
+    .populate('categoryId', 'name color icon')
+    .populate('purchasedBy', 'name avatarInitials')
+    .sort({ purchasedAt: -1 });
+
+  // Group by date
+  const grouped = dates.map((date) => ({
+    date,
+    items: items.filter(
+      (i) =>
+        i.purchasedAt &&
+        i.purchasedAt.toISOString().slice(0, 10) === date
+    ),
+  }));
+
+  return { groups: grouped, totalDates, page: pageNum, limit: limitNum };
+};
+
+module.exports = { getAllItems, addItem, updateItem, deleteItem, clearPurchased, getPurchaseHistory };
