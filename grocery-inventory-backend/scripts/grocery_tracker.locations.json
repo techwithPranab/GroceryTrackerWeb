@@ -1,0 +1,120 @@
+[{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1c1"
+  },
+  "name": "Refrigerator",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "description": "Main fridge",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1c2"
+  },
+  "name": "Freezer",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "description": "Chest freezer in garage",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1c3"
+  },
+  "name": "Pantry",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "description": "Kitchen pantry shelves",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1c4"
+  },
+  "name": "Cabinet",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "description": "Upper kitchen cabinets",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1c5"
+  },
+  "name": "Counter",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "description": "Kitchen countertop",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1c6"
+  },
+  "name": "Garage Storage",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "description": "Extra storage in garage",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.930Z"
+  }
+}]

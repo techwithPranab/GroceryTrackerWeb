@@ -1,0 +1,1554 @@
+[{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a176"
+  },
+  "name": "Fresh Vegetables",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#16a34a",
+  "icon": "🥦",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.922Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.922Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a177"
+  },
+  "name": "Fresh Fruits",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f97316",
+  "icon": "🍎",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.922Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.922Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a178"
+  },
+  "name": "Herbs & Seasonings",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#84cc16",
+  "icon": "🌿",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.922Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.922Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a179"
+  },
+  "name": "Organic Fruits & Veggies",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#22c55e",
+  "icon": "🌱",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a17a"
+  },
+  "name": "Exotic Fruits & Veggies",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#a3e635",
+  "icon": "🥝",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a17b"
+  },
+  "name": "Flowers & Plants",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f472b6",
+  "icon": "🌸",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a17c"
+  },
+  "name": "Rice & Rice Products",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fbbf24",
+  "icon": "🍚",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a17d"
+  },
+  "name": "Dals & Pulses",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#d97706",
+  "icon": "🫘",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a17e"
+  },
+  "name": "Flours & Sooji",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fef3c7",
+  "icon": "🌾",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a17f"
+  },
+  "name": "Edible Oils & Ghee",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f59e0b",
+  "icon": "�",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a180"
+  },
+  "name": "Masalas & Spices",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#dc2626",
+  "icon": "🌶️",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a181"
+  },
+  "name": "Salt, Sugar & Jaggery",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#e5e7eb",
+  "icon": "🧂",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a182"
+  },
+  "name": "Dry Fruits & Nuts",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#92400e",
+  "icon": "🥜",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a183"
+  },
+  "name": "Milk",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#dbeafe",
+  "icon": "🥛",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a184"
+  },
+  "name": "Butter & Margarine",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fef08a",
+  "icon": "🧈",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a185"
+  },
+  "name": "Cheese",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fde68a",
+  "icon": "🧀",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a186"
+  },
+  "name": "Curd & Yogurt",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#e0f2fe",
+  "icon": "🍶",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a187"
+  },
+  "name": "Paneer & Tofu",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f0fdf4",
+  "icon": "🟦",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a188"
+  },
+  "name": "Cream & Whitener",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f8fafc",
+  "icon": "🍦",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a189"
+  },
+  "name": "Eggs",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fef9c3",
+  "icon": "🥚",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a18a"
+  },
+  "name": "Bread & Buns",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#d97706",
+  "icon": "🍞",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a18b"
+  },
+  "name": "Cakes & Pastries",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f9a8d4",
+  "icon": "🎂",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a18c"
+  },
+  "name": "Cookies & Biscuits",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fcd34d",
+  "icon": "🍪",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a18d"
+  },
+  "name": "Breakfast Cereals",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fb923c",
+  "icon": "🥣",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a18e"
+  },
+  "name": "Chicken",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fca5a5",
+  "icon": "🍗",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a18f"
+  },
+  "name": "Mutton & Lamb",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#ef4444",
+  "icon": "🥩",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a190"
+  },
+  "name": "Fish & Seafood",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#38bdf8",
+  "icon": "🐟",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a191"
+  },
+  "name": "Pork",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f87171",
+  "icon": "🐷",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a192"
+  },
+  "name": "Ready-to-Cook Meat",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fbbf24",
+  "icon": "🍱",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a193"
+  },
+  "name": "Soft Drinks & Sodas",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f87171",
+  "icon": "🥤",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a194"
+  },
+  "name": "Juices & Fruit Drinks",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fb923c",
+  "icon": "🧃",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a195"
+  },
+  "name": "Tea",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#a78bfa",
+  "icon": "🍵",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a196"
+  },
+  "name": "Coffee",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#78350f",
+  "icon": "☕",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a197"
+  },
+  "name": "Health & Energy Drinks",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#4ade80",
+  "icon": "⚡",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a198"
+  },
+  "name": "Water & Ice",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#7dd3fc",
+  "icon": "💧",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a199"
+  },
+  "name": "Milk Drinks & Shakes",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#ddd6fe",
+  "icon": "🥛",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a19a"
+  },
+  "name": "Chips & Crisps",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fde68a",
+  "icon": "🍟",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a19b"
+  },
+  "name": "Namkeen & Bhujia",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f97316",
+  "icon": "�",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a19c"
+  },
+  "name": "Chocolates & Candies",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#7c3aed",
+  "icon": "🍫",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a19d"
+  },
+  "name": "Noodles & Pasta",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fbbf24",
+  "icon": "🍝",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a19e"
+  },
+  "name": "Ready to Eat / Cook",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#34d399",
+  "icon": "🍛",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a19f"
+  },
+  "name": "Frozen Foods",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#06b6d4",
+  "icon": "🧊",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a0"
+  },
+  "name": "Jams, Honey & Spreads",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f87171",
+  "icon": "🍯",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a1"
+  },
+  "name": "Sauces & Ketchup",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#dc2626",
+  "icon": "🫙",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a2"
+  },
+  "name": "Pickles & Chutney",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#65a30d",
+  "icon": "🥫",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.923Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a3"
+  },
+  "name": "Papad & Fryums",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fcd34d",
+  "icon": "🫓",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a4"
+  },
+  "name": "Popcorn & Makhana",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fef08a",
+  "icon": "🍿",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a5"
+  },
+  "name": "Dishwash",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#6366f1",
+  "icon": "🧼",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a6"
+  },
+  "name": "Floor & Surface Cleaners",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#818cf8",
+  "icon": "🧹",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a7"
+  },
+  "name": "Toilet Cleaners",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#a5b4fc",
+  "icon": "🚽",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a8"
+  },
+  "name": "Detergents & Fabric Care",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#c7d2fe",
+  "icon": "🧺",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1a9"
+  },
+  "name": "Air Fresheners",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#e0e7ff",
+  "icon": "🌬️",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1aa"
+  },
+  "name": "Garbage Bags & Covers",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#6b7280",
+  "icon": "🗑️",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1ab"
+  },
+  "name": "Paper Products & Tissues",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#d1d5db",
+  "icon": "🧻",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1ac"
+  },
+  "name": "Insect Repellents",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fef9c3",
+  "icon": "🦟",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1ad"
+  },
+  "name": "Shampoo & Conditioner",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#f0abfc",
+  "icon": "🧴",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1ae"
+  },
+  "name": "Skin Care",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fbcfe8",
+  "icon": "✨",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1af"
+  },
+  "name": "Soaps & Body Wash",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#e879f9",
+  "icon": "🫧",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b0"
+  },
+  "name": "Oral Care",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#a5f3fc",
+  "icon": "🦷",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b1"
+  },
+  "name": "Feminine Hygiene",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fda4af",
+  "icon": "🌸",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b2"
+  },
+  "name": "Deodorants & Perfumes",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#c084fc",
+  "icon": "💐",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b3"
+  },
+  "name": "Hair Care & Styling",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#818cf8",
+  "icon": "💇",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b4"
+  },
+  "name": "Men's Grooming",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#475569",
+  "icon": "🪒",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b5"
+  },
+  "name": "Baby Food & Formula",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fde68a",
+  "icon": "🍼",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b6"
+  },
+  "name": "Diapers & Wipes",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fed7aa",
+  "icon": "👶",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b7"
+  },
+  "name": "Baby Bath & Skin Care",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#bfdbfe",
+  "icon": "🛁",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b8"
+  },
+  "name": "Baby Accessories",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#ddd6fe",
+  "icon": "🧸",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1b9"
+  },
+  "name": "Kitchen Tools & Storage",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#94a3b8",
+  "icon": "🍳",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1ba"
+  },
+  "name": "Pooja & Spiritual",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fbbf24",
+  "icon": "🪔",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1bb"
+  },
+  "name": "Pet Food & Care",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#86efac",
+  "icon": "🐾",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1bc"
+  },
+  "name": "International Cuisine",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#0ea5e9",
+  "icon": "🌍",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1bd"
+  },
+  "name": "Organic & Natural Foods",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#4ade80",
+  "icon": "🌿",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1be"
+  },
+  "name": "Vitamins & Supplements",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#fb923c",
+  "icon": "💊",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69bb73d036d36ed43f22a1bf"
+  },
+  "name": "Health Devices",
+  "userId": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "color": "#38bdf8",
+  "icon": "�",
+  "createdBy": {
+    "$oid": "69bb73d036d36ed43f22a172"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-19T03:56:00.924Z"
+  }
+}]

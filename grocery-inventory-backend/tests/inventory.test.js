@@ -145,6 +145,52 @@ describe('Inventory API', () => {
     });
   });
 
+  describe('PUT /api/inventory/:id', () => {
+    it('should refresh an existing auto-added shopping item when the threshold changes', async () => {
+      const createRes = await request(app)
+        .post('/api/inventory')
+        .set('Authorization', `Bearer ${token}`)
+        .send(itemPayload());
+
+      const itemId = createRes.body.data.item._id;
+      await request(app)
+        .put(`/api/inventory/${itemId}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send({ minimumThreshold: 5 });
+
+      const shoppingRes = await request(app)
+        .get('/api/shopping-list')
+        .set('Authorization', `Bearer ${token}`);
+      const autoItems = shoppingRes.body.data.filter(
+        (item) => item.inventoryItemId === itemId && item.autoAdded
+      );
+
+      expect(autoItems).toHaveLength(1);
+      expect(autoItems[0].quantityNeeded).toBe(5);
+      expect(autoItems[0].notes).toContain('threshold (5)');
+    });
+
+    it('should remove the pending auto-added item when it is no longer low-stock', async () => {
+      const createRes = await request(app)
+        .post('/api/inventory')
+        .set('Authorization', `Bearer ${token}`)
+        .send(itemPayload());
+
+      const itemId = createRes.body.data.item._id;
+      await request(app)
+        .put(`/api/inventory/${itemId}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send({ minimumThreshold: 0 });
+
+      const autoItem = await ShoppingListItem.findOne({
+        inventoryItemId: itemId,
+        status: 'pending',
+        autoAdded: true,
+      });
+      expect(autoItem).toBeNull();
+    });
+  });
+
   describe('DELETE /api/inventory/:id', () => {
     it('should delete inventory item', async () => {
       const createRes = await request(app)

@@ -6,6 +6,7 @@ import {
   updateInventoryItem, deleteInventoryItem, updateItemQuantity,
   setSelectedItem, clearSelectedItem,
 } from '@/store/slices/inventorySlice';
+import { fetchShoppingList } from '@/store/slices/shoppingListSlice';
 import { Modal, Badge, EmptyState, LoadingSpinner } from '@/components/ui';
 import { Input, Select, Textarea } from '@/components/ui';
 import { Button } from '@/components/ui';
@@ -153,6 +154,7 @@ export default function InventoryPage() {
         await dispatch(createInventoryItem(payload)).unwrap();
         toast.success('Item added');
       }
+      dispatch(fetchShoppingList({}));
       setShowModal(false); dispatch(clearSelectedItem()); load();
     } catch (err: unknown) {
       toast.error((err as { message?: string })?.message ?? 'Failed to save');
@@ -171,6 +173,7 @@ export default function InventoryPage() {
     const newQty = Math.max(0, item.quantity + delta);
     try {
       await dispatch(updateItemQuantity({ id: item._id, quantity: newQty })).unwrap();
+      dispatch(fetchShoppingList({}));
       load();
     } catch { toast.error('Failed to update quantity'); }
   };

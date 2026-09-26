@@ -6,32 +6,44 @@ const ActivityLog = require('../models/ActivityLog');
 const AppError = require('../utils/AppError');
 
 /**
- * Auto-add item to shopping list if quantity < minimumThreshold
+ * Keep the pending auto-added shopping-list item in sync with inventory.
  */
 const checkAndAutoAddToShoppingList = async (item) => {
-  if (item.quantity <= item.minimumThreshold) {
-    const alreadyExists = await ShoppingListItem.findOne({
-      userId: item.userId,
-      inventoryItemId: item._id,
-      status: 'pending',
-    });
+  const existingItem = await ShoppingListItem.findOne({
+    userId: item.userId,
+    inventoryItemId: item._id,
+    status: 'pending',
+    autoAdded: true,
+  });
 
-    if (!alreadyExists) {
-      const unitLabel = item.unitSize ? `${item.unitSize} ${item.unit}` : item.unit;
+  if (item.quantity <= item.minimumThreshold) {
+    const quantityNeeded = Math.max(1, item.minimumThreshold - item.quantity + 1);
+    const unitLabel = item.unitSize ? `${item.unitSize} ${item.unit}` : item.unit;
+    const syncedFields = {
+      itemName: item.itemName,
+      quantityNeeded,
+      unitSize: item.unitSize || null,
+      unit: item.unit,
+      categoryId: item.categoryId,
+      priority: 'high',
+      notes: `Auto-added: stock (${item.quantity} × ${unitLabel}) is at or below threshold (${item.minimumThreshold}).`,
+    };
+
+    if (existingItem) {
+      Object.assign(existingItem, syncedFields);
+      await existingItem.save();
+    } else {
       await ShoppingListItem.create({
-        itemName: item.itemName,
-        quantityNeeded: Math.max(1, item.minimumThreshold - item.quantity + 1),
-        unitSize: item.unitSize || null,
-        unit: item.unit,
-        categoryId: item.categoryId,
+        ...syncedFields,
         userId: item.userId,
         addedBy: item.createdBy,
         autoAdded: true,
         inventoryItemId: item._id,
-        priority: 'high',
-        notes: `Auto-added: stock (${item.quantity} × ${unitLabel}) is at or below threshold (${item.minimumThreshold}).`,
       });
     }
+  } else if (existingItem) {
+    // The item is no longer low-stock, so it should not remain on the auto list.
+    await ShoppingListItem.deleteOne({ _id: existingItem._id });
   }
 };
 
