@@ -16,13 +16,18 @@ const getAllItems = async (userId, query = {}) => {
 
   const skip = (parseInt(page, 10) - 1) * parseInt(limit, 10);
   const sortDir = sortOrder === 'asc' ? 1 : -1;
+  const sort = sortBy === 'status'
+    ? { status: sortDir }
+    : { status: 1, [sortBy]: sortDir };
 
   const [items, total] = await Promise.all([
     ShoppingListItem.find(filter)
       .populate('categoryId', 'name color icon')
       .populate('addedBy', 'name avatarInitials')
       .populate('purchasedBy', 'name avatarInitials')
-      .sort({ [sortBy]: sortDir })
+      // Pending rows must come first so low-stock items are never displaced
+      // from the visible page by purchase history.
+      .sort(sort)
       .skip(skip)
       .limit(parseInt(limit, 10)),
     ShoppingListItem.countDocuments(filter),

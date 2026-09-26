@@ -126,6 +126,27 @@ describe('Inventory API', () => {
       );
     });
 
+    it('should treat an out-of-stock item with a zero threshold as low stock', async () => {
+      const createRes = await request(app)
+        .post('/api/inventory')
+        .set('Authorization', `Bearer ${token}`)
+        .send({ ...itemPayload(), quantity: 0, minimumThreshold: 0 });
+
+      const shoppingRes = await request(app)
+        .get('/api/shopping-list')
+        .set('Authorization', `Bearer ${token}`);
+
+      expect(shoppingRes.body.data).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            inventoryItemId: createRes.body.data.item._id,
+            autoAdded: true,
+            quantityNeeded: 1,
+          }),
+        ])
+      );
+    });
+
     it('should return 422 on missing required fields', async () => {
       const res = await request(app)
         .post('/api/inventory')

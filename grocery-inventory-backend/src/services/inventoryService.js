@@ -16,7 +16,7 @@ const checkAndAutoAddToShoppingList = async (item) => {
     autoAdded: true,
   });
 
-  if (item.minimumThreshold > 0 && item.quantity <= item.minimumThreshold) {
+  if (item.quantity <= item.minimumThreshold) {
     const quantityNeeded = Math.max(1, item.minimumThreshold - item.quantity + 1);
     const unitLabel = item.unitSize ? `${item.unitSize} ${item.unit}` : item.unit;
     const syncedFields = {
@@ -84,12 +84,7 @@ const getAllItems = async (userId, query = {}) => {
   if (search) filter.itemName = { $regex: search, $options: 'i' };
 
   if (lowStock === 'true') {
-    filter.$expr = {
-      $and: [
-        { $gt: ['$minimumThreshold', 0] },
-        { $lte: ['$quantity', '$minimumThreshold'] },
-      ],
-    };
+    filter.$expr = { $lte: ['$quantity', '$minimumThreshold'] };
   }
 
   if (expiring === 'true') {

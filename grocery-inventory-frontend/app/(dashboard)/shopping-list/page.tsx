@@ -47,7 +47,7 @@ export default function ShoppingListPage() {
 
   const showSizeField = SIZED_UNITS.includes(newUnit);
 
-  useEffect(() => { dispatch(fetchShoppingList({})); }, [dispatch]);
+  useEffect(() => { dispatch(fetchShoppingList({ limit: 500 })); }, [dispatch]);
 
   const pending   = items.filter(i => i.status === 'pending');
   const purchased = items.filter(i => i.status === 'purchased');

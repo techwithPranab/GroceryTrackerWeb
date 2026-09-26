@@ -154,7 +154,7 @@ export default function InventoryPage() {
         await dispatch(createInventoryItem(payload)).unwrap();
         toast.success('Item added');
       }
-      dispatch(fetchShoppingList({}));
+      dispatch(fetchShoppingList({ limit: 500 }));
       setShowModal(false); dispatch(clearSelectedItem()); load();
     } catch (err: unknown) {
       toast.error((err as { message?: string })?.message ?? 'Failed to save');
@@ -173,7 +173,7 @@ export default function InventoryPage() {
     const newQty = Math.max(0, item.quantity + delta);
     try {
       await dispatch(updateItemQuantity({ id: item._id, quantity: newQty })).unwrap();
-      dispatch(fetchShoppingList({}));
+      dispatch(fetchShoppingList({ limit: 500 }));
       load();
     } catch { toast.error('Failed to update quantity'); }
   };
@@ -273,7 +273,7 @@ export default function InventoryPage() {
                 <tbody>
                   {items.map(item => {
                     const expBadge = getExpiryBadgeInfo(item.expirationDate);
-                    const isLow = item.quantity <= (item.minimumThreshold ?? 0) && (item.minimumThreshold ?? 0) > 0;
+                    const isLow = item.quantity <= (item.minimumThreshold ?? 0);
                     const catName = item.categoryId?.name ?? '—';
                     const locName = item.locationId?.name ?? '—';
                     return (
@@ -322,7 +322,7 @@ export default function InventoryPage() {
             <div className={styles.mobileCards}>
               {items.map(item => {
                 const expBadge = getExpiryBadgeInfo(item.expirationDate);
-                const isLow = item.quantity <= (item.minimumThreshold ?? 0) && (item.minimumThreshold ?? 0) > 0;
+                const isLow = item.quantity <= (item.minimumThreshold ?? 0);
                 return (
                   <div key={item._id} className={styles.mobileCard}>
                     <div className={styles.mobileCardTop}>
