@@ -3,6 +3,7 @@ export interface User {
   name: string;
   email: string;
   role: 'admin' | 'member' | 'superadmin';
+  householdId?: string | null;
   avatarInitials: string;
   lastLoginAt: string | null;
   createdAt: string;
