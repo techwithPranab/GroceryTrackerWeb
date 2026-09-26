@@ -16,7 +16,7 @@ const checkAndAutoAddToShoppingList = async (item) => {
     autoAdded: true,
   });
 
-  if (item.quantity <= item.minimumThreshold) {
+  if (item.minimumThreshold > 0 && item.quantity <= item.minimumThreshold) {
     const quantityNeeded = Math.max(1, item.minimumThreshold - item.quantity + 1);
     const unitLabel = item.unitSize ? `${item.unitSize} ${item.unit}` : item.unit;
     const syncedFields = {
@@ -47,6 +47,23 @@ const checkAndAutoAddToShoppingList = async (item) => {
   }
 };
 
+/**
+ * Reconcile all pending auto-added rows for a user. This also backfills
+ * low-stock inventory created before automatic shopping-list sync existed.
+ */
+const syncLowStockItemsToShoppingList = async (userId) => {
+  const inventoryItems = await InventoryItem.find({ userId });
+
+  await Promise.all(inventoryItems.map(checkAndAutoAddToShoppingList));
+
+  await ShoppingListItem.deleteMany({
+    userId,
+    status: 'pending',
+    autoAdded: true,
+    inventoryItemId: { $nin: inventoryItems.map((item) => item._id) },
+  });
+};
+
 const getAllItems = async (userId, query = {}) => {
   const {
     page = 1,
@@ -67,7 +84,12 @@ const getAllItems = async (userId, query = {}) => {
   if (search) filter.itemName = { $regex: search, $options: 'i' };
 
   if (lowStock === 'true') {
-    filter.$expr = { $lte: ['$quantity', '$minimumThreshold'] };
+    filter.$expr = {
+      $and: [
+        { $gt: ['$minimumThreshold', 0] },
+        { $lte: ['$quantity', '$minimumThreshold'] },
+      ],
+    };
   }
 
   if (expiring === 'true') {
@@ -218,4 +240,5 @@ module.exports = {
   updateQuantity,
   getExpiringItems,
   checkAndAutoAddToShoppingList,
+  syncLowStockItemsToShoppingList,
 };

@@ -4,8 +4,11 @@ const ShoppingListItem = require('../models/ShoppingListItem');
 const InventoryItem = require('../models/InventoryItem');
 const ActivityLog = require('../models/ActivityLog');
 const AppError = require('../utils/AppError');
+const { syncLowStockItemsToShoppingList } = require('./inventoryService');
 
 const getAllItems = async (userId, query = {}) => {
+  await syncLowStockItemsToShoppingList(userId);
+
   const { status, page = 1, limit = 50, sortBy = 'createdAt', sortOrder = 'desc' } = query;
 
   const filter = { userId };

@@ -100,6 +100,32 @@ describe('Inventory API', () => {
       expect(autoItem).toBeDefined();
     });
 
+    it('should restore missing low-stock products when the shopping list is fetched', async () => {
+      const createRes = await request(app)
+        .post('/api/inventory')
+        .set('Authorization', `Bearer ${token}`)
+        .send(itemPayload());
+      const itemId = createRes.body.data.item._id;
+
+      await ShoppingListItem.deleteMany({ inventoryItemId: itemId });
+
+      const shoppingRes = await request(app)
+        .get('/api/shopping-list')
+        .set('Authorization', `Bearer ${token}`);
+
+      expect(shoppingRes.status).toBe(200);
+      expect(shoppingRes.body.data).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            inventoryItemId: itemId,
+            itemName: 'Test Milk',
+            autoAdded: true,
+            status: 'pending',
+          }),
+        ])
+      );
+    });
+
     it('should return 422 on missing required fields', async () => {
       const res = await request(app)
         .post('/api/inventory')
